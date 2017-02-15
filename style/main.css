@@ -1,0 +1,12 @@
+.formStyle{
+    display:inline !important;
+}
+input[type='text']{
+    width: 100px;
+}
+.form-control.inputStyle{
+    width:100%;
+}
+.someSpace{
+    margin-right:20px; 
+}

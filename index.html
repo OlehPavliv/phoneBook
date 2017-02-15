@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="phoneBook">
+<head>
+    <meta charset="UTF-8">
+    <title>PhoneBook</title>
+    <link rel="stylesheet" href="src/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body ng-controller="myCtrl">
+   <div class="container">
+       <div class="row">
+           <div class="col-md-12">
+               <h1>Phone Book</h1>
+           </div>
+       </div>
+       
+       <div class="row">
+           <div class="col-md-12">
+               <form action="#" name="searchForm">
+                   <label for="search">Find:</label>
+                   <input type="text" name="searchInput" id="search" class="form-control inputStyle" placeholder="search" ng-model="searchText">
+               </form>
+           </div>
+       </div>
+       
+       <div class="row">
+           <div class="col-md-12">
+               <div class="panel">
+                   <table class="table table-striped">
+                       <thead>
+                           <tr>
+                               <th ng-click="sortType='firstName';sortReverse = !sortReverse">First Name</th>
+                               <th ng-click="sortType='lastName';sortReverse = !sortReverse">Last Name</th>
+                               <th ng-click="sortType='phone';sortReverse = !sortReverse">Number</th>
+                               <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >ADD</button></th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr ng-repeat = "item in data | filter:searchText | orderBy:sortType:sortReverse">
+                               <td>{{item.firstName}}</td>
+                               <td>{{item.lastName}}</td>
+                               <td>{{item.phone}}</td>
+                               <td><button class="btn btn-success " data-toggle="modal" data-target="#myModal1" ng-click="findIndex($index)">Change</button><span class="someSpace"></span><button class="btn btn-danger" ng-click="dellPerson($index)">Delete</button></td>
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+       </div>
+       
+   </div>
+   
+   
+   
+    
+    <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Add new person to phone book</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" name="addPersonInf" class="formStyle">
+                    <label for="addName">First Name</label>
+                    <input type="text" name="addName" id="addName" ng-model="addFirstName" placeholder="name">
+                    <label for="addSurname">Last Name</label>
+                    <input type="text" name="addSurname" id="addSurname" ng-model="addLastName" placeholder="surname">
+                    <label for="addMobile">Phone</label>
+                    <input type="text" name="phone" id="addMobile" ng-model="addPhone" placeholder="phone">
+                </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary lg"  data-dismiss="modal" ng-click="addNewPerson()">Add</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <!--2 modal-->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Change person  information</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" name="changePersonInf">
+                    <label for="nameChange">First Name</label>
+                    <input type="text" name="nameChange" id="nameChange"  placeholder="name" ng-model="nameChange">
+                    <label for="surnameChange">Last Name</label>
+                    <input type="text" name="surnameChange" id="surnameChange"  placeholder="surname" ng-model="surnameChange">
+                    <label for="mobileChange">Phone</label>
+                    <input type="text" name="phone" id="mobileChange"  placeholder="phone" ng-model="phoneChange">
+                </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary lg"  data-dismiss="modal" ng-click="changeInf()">Change</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <script src="src/libs/angular/angular.min.js"></script>
+    <script src="src/libs/jquery/jquery-3.1.1.min.js"></script>
+    <script src="src/js/bootstrap.min.js"></script>
+    <script src="app/app.js"></script>
+</body>
+</html>
